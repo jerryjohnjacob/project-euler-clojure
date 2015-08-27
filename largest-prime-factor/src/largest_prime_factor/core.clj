@@ -23,11 +23,14 @@
   )
 
 (defn is-prime? [n]
-  (if (== (number-of-factors n) 1)
-    true
+  (if (and (even? n) (not= n 2))
     false
+    (if (== (number-of-factors (round-down (/ n 2))) 1)
+      true
+      false
+      )
     )
-  )
+)
 
 (defn is-prime-factor? [main-number number-to-check]
   (and (is-factor? main-number number-to-check) (is-prime? number-to-check))
