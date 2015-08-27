@@ -1,6 +1,8 @@
 (ns multiples-of-3-and-5.core
   (:gen-class))
 
+(def limit 1000)
+
 (defn is-multiple? [number-to-check number]
   (== 0 (rem number-to-check number))
 )
@@ -26,6 +28,6 @@
 
 (defn -main
   [& args]
-  (println (sum-of-array (distinct (into (get-multiples 3 1000 [])
-                                         (get-multiples 5 1000 [])))))
+  (println (sum-of-array (distinct (into (get-multiples 3 (- limit 1) [])
+                                         (get-multiples 5 (- limit 1) [])))))
 )
