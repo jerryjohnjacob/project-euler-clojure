@@ -4,14 +4,17 @@
 (defn divisible? [num1, num2]
   (= (rem num1 num2) 0))
 
+(defn square-root [num]
+  (int (Math/sqrt num)))
+
 (defn divisible-by-list-of-primes? [num, list-of-primes]
-  (let [length-of-list (count list-of-primes) half-num (/ num 2)]
+  (let [length-of-list (count list-of-primes) prime-limit-check (square-root num)]
     (loop [index 0]
       (if (= index length-of-list)
         false
         (do
           (let [prime-at-index (nth list-of-primes index)]
-            (if (> prime-at-index half-num)
+            (if (> prime-at-index prime-limit-check)
             false
             (do      
               (if (divisible? num prime-at-index)
