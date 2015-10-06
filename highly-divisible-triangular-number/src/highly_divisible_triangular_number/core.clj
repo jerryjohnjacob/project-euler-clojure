@@ -2,14 +2,15 @@
   (:gen-class))
 
 (defn is-divisor? [main-number number-to-check]
-  (== 0 (rem main-number number-to-check))
-)
+  (== 0 (rem main-number number-to-check)))
+
+(defn square-root [num]
+  (int (Math/sqrt num)))
 
 (defn get-divisors [number]
-  (conj (for [x (range 1 (inc (/ number 2)))
-              :when (is-divisor? number x)]
-          x)
-        number))
+  (flatten (distinct (for [x (range 1 (square-root number))
+                           :when (is-divisor? number x)]
+                       [x (/ number x)]))))
 
 (defn -main
   [& args]
